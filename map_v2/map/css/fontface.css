@@ -1,0 +1,26 @@
+@font-face {
+  font-family: PrimeRegular;
+  src:
+        url(../fonts/PrimeRegular.otf) format('otf'),
+        url(../fonts/PrimeRegular.woff2) format('woff2'),
+        url(../fonts/PrimeRegular.woff) format('woff'),
+        url(../fonts/PrimeRegular.eot) format('eot'),
+        url(../fonts/PrimeRegular.svg) format('svg'),
+        url(../fonts/PrimeRegular.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: Simplica;
+  src:  
+        url(../fonts/SIMPLIFICATypeface.otf) format('otf'),
+        url(../fonts/SIMPLIFICATypeface.woff2) format('woff2'),
+        url(../fonts/SIMPLIFICATypeface.woff) format('woff'),
+        url(../fonts/SIMPLIFICATypeface.eot) format('eot'),
+        url(../fonts/SIMPLIFICATypeface.svg) format('svg'),
+        url(../fonts/SIMPLIFICATypeface.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: Arialn;
+  src: url(fonts/ARIALN.TTF);
+}
