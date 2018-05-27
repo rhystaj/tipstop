@@ -1,0 +1,132 @@
+
+body, html {
+    height: 100%;
+    margin: 0; 
+}
+
+.hero-image {
+  background-image: url("img/overview.png");
+  height: 90%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  margin: 6%;
+  color: white;
+}
+
+.transbutton{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 30px;
+  color: black;
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid white;
+  color: white;
+  margin-left: 6px;
+}
+.colorbutton{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 30px;
+  color: black;
+  background: #34e89e;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  margin-right: 6px;
+}
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}
+.mainnav{ 
+  float: right;
+  margin-right: 15%;
+  margin-top: 2%;
+
+}
+.secondnav{
+  background-color: #333;
+  position: fixed;
+  top: -100px;
+  right: 15%;
+  opacity: 0.7;
+  display:block;
+  transition: top 0.3s;
+
+}
+.navelement{
+  float: right;
+  font-family: Simplica;
+  text-decoration: none;
+  margin: 10px;
+  font-size: 25px;
+  color: white;
+}
+.mainnav a:hover {
+  color: #555;
+}
+.logo{
+  width: 8%;
+  margin-top: 2%;
+  margin-left: 15%;
+}
+.navigationsep{
+  border-bottom: 1px solid white;
+  padding-bottom: 3%;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.herocontent-h{
+    font-family: PrimeRegular;
+}
+.herocontent-p{
+  font-family: Simplica;
+}
+
+.upper-content-1{
+  width: 100%;
+  color: #5b5b5b;
+  margin-left: 20%;
+  margin-bottom: 10%;
+}
+.upper-content-1-1{
+  width: 30%;
+  margin-top: 0;
+  float: left;
+  display: block;
+
+}
+.upper-content-1-2{
+  display: block;
+  width: 30%;
+  margin-top: 15%;
+
+}
+.upper-content-2{
+  margin-right: 20%;
+  margin-bottom: 7%;
+  color: #5b5b5b;
+}
+.upper-content-2-1{
+  width: 30%;
+  float: right;
+  display: block;
+}
+.upper-content-2-2{
+  display: block;
+  width: 30%;
+  margin-top: 15%;
+  margin-left: 20%;
+}

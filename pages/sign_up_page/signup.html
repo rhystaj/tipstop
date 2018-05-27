@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+<title>Sign-up</title>
+<!--meta-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Sign-up Page for TipStop" />
+<!--css-->
+<link href="css/signupstyle.css" rel='stylesheet' type='text/css' media="all" />
+<link href="css/fontface.css" rel="stylesheet" type="text/css" >
+</head>
+
+
+
+<body>
+
+	<!--logo and navbar-->
+    <a href="index.html"><img class="logo" src="img/logo.png"></a>
+    <nav class="mainnav">
+      <a class="navelement"  href="#">Contact</a>
+      <a class="navelement" href="signin.html">Sign In</a>
+      <a class="navelement"  href="index.html">Home</a>
+    </nav>
+
+    <h1>Join us!</h1>
+    <div class="sign-up-pannel">
+
+	<div id="signup-agile">   
+
+				
+        <p class="header">User Name</p>
+		<input type="text" name="user" value="Your User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Full Name';}">
+				
+		<p class="header">Phone</p>
+		<input type="tel" name="phone" value="Your Phone Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Phone Number';}">
+				
+		<p class="header">Email Address</p>
+		<input type="email" name="email" value="Email@address.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email@address.com';}">
+				
+		<p class="header">Password</p>
+		<input type="password" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+				
+		<p class="header">Confirm Password</p>
+		<input type="password" name="password" value="Confirm Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm Password';}">
+				
+		<input type="submit" class="register" value="Sign up">
+
+	</div> 
+
+    </div>  
+    
+    <p class="copyright">© TipStop Studio | MDDN352 P3 </p>
+
+</body>
+</html>
