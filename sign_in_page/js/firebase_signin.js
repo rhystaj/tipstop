@@ -18,7 +18,8 @@ window.onload = () => {
 
     const signinButton = document.getElementById("signin_button");
     signinButton.addEventListener('click', e => {
-        auth.signInWithEmailAndPassword(emailField.value, passwordField.value);
+        auth.signInWithEmailAndPassword(emailField.value, passwordField.value)
+            .catch(onSignInError);
     });
 
 };
@@ -29,7 +30,7 @@ auth.onAuthStateChanged(user => {
     if(user === null) return;
     window.location = "../map_page/map.html";
 
-}).catch(onSignInError)
+});
 
 //The response to when firebase fails to sign in with the given credentials.
 function onSignInError(err){
