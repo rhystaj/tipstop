@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-<script src="js/logout.js"></script>
+<script src="js/userhandler.js"></script>
 <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><script src="js/respond.min.js"></script><![endif]-->
 </head>
 
@@ -95,7 +95,7 @@
           </div>
           <div class="modal-body">
             <p>Select request</p>
-            <select class="drop-entry">
+            <select class="drop-entry" id="keyword_selection">
               <option value="restaurant">Restaurant</option>
               <option value="poi">Point of Interest</option>
               <option value="entertainment">Entertainment</option>
@@ -104,7 +104,7 @@
             <br>
             <br>
             <p>Time limit</p>
-            <select class="drop-entry">
+            <select class="drop-entry" id="time_limit_selection">
               <option value="5min">5 Minutes</option>
               <option value="10min">10 Minutes</option>
               <option value="30min">30 Minutes</option>
@@ -113,11 +113,11 @@
             <br>
             <br>
             <p>Your specific request</p>
-            <input type="text" name="request" class="text-entry">
+            <input type="text" name="request" class="text-entry" id="request_details">
             
           </div>
           <div class="modal-footer">
-            <button type="button" class="button-request">Request</button>
+            <button type="button" class="button-request" id="request_button">Request</button>
             <button type="button" class="button-close btn-close" data-dismiss="modal">Close</button>
           </div>
         </div>    
