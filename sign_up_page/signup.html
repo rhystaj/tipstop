@@ -10,6 +10,8 @@
 <!--css-->
 <link href="css/signupstyle.css" rel='stylesheet' type='text/css' media="all" />
 <link href="css/fontface.css" rel="stylesheet" type="text/css" >
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script src="js/firebase_signup.js"></script>
 </head>
 
 
@@ -31,21 +33,21 @@
 
 				
         <p class="header">User Name</p>
-		<input type="text" name="user" value="Your User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Full Name';}">
+		<input type="text" id="name" name="user" value="Your User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Full Name';}">
 				
 		<p class="header">Phone</p>
-		<input type="tel" name="phone" value="Your Phone Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Phone Number';}">
+		<input type="tel" id="phone" name="phone" value="Your Phone Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Phone Number';}">
 				
 		<p class="header">Email Address</p>
-		<input type="email" name="email" value="Email@address.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email@address.com';}">
+		<input type="email" id="email" name="email" value="Email@address.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email@address.com';}">
 				
 		<p class="header">Password</p>
-		<input type="password" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+		<input id="password_1" type="password" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
 				
 		<p class="header">Confirm Password</p>
-		<input type="password" name="password" value="Confirm Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm Password';}">
+		<input id="password_2" type="password" name="password" value="Confirm Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm Password';}">
 				
-		<input type="submit" class="register" value="Sign up">
+		<input type="submit" class="register" value="Sign up" id="signup_button">
 
 	</div> 
 
