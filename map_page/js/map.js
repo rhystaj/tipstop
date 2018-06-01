@@ -10,6 +10,7 @@ function initMap() {
           var infoWindow = new google.maps.InfoWindow({
             map: map
           });
+          
           if (navigator.geolocation) {
 
             var getLocation = function() {
@@ -22,6 +23,8 @@ function initMap() {
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('My location');
                 map.setCenter(pos);
+
+                setUserLocationDetails(map, pos);
 
                 var circle = new google.maps.Circle({
                   strokeColor: '#12a45a',
@@ -52,3 +55,23 @@ function initMap() {
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
         }
+                   function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}

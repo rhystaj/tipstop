@@ -17,8 +17,11 @@ function findTypesOfNeabyPlaces(coord, rad, supportedTypes, map, processResult){
 
             service.nearbySearch(request, results => {
 
-                if(results.length > 0){
-                    nearbyTypes.push(element);
+                console.log(element);
+                if(results !== null){
+                    if(results.length > 0){
+                        nearbyTypes.push(element);
+                    }
                 }
 
                 typesLeftToCheck--;

@@ -11,14 +11,24 @@ firebase.initializeApp(config);
 const auth = firebase.auth();
 const db = firebase.database().ref();
 
+var map = "Test";
+var loc = null;
 var currentUser = null;
 
-let eventsToFire = 2;
+let eventsToFire = 3;
+
+var avaliablePlaceTypes = new Array();
+
+function setUserLocationDetails(m, l){
+  map = m;
+  loc = l;
+
+  onUserAndMapAndWindowLoaded();
+}
 
 window.onload = () => {
 
   const keyWordSelection = document.getElementById("keyword_selection");
-  const timeLimitSelection = document.getElementById("time_limit_selection");
   const requestDetailsField = document.getElementById("request_details");
   
   const requestButton = document.getElementById("request_button");
@@ -29,6 +39,19 @@ window.onload = () => {
   const logoutButton = document.getElementById("logout_button");
   logoutButton.addEventListener('click', e => auth.signOut());
 
+  console.log(keyWordSelection.options);
+
+  for(var i = 0; i < keyWordSelection.options.length; i++){
+
+    const values = keyWordSelection.options[i].value.split(" ");
+    values.forEach(value => {
+      avaliablePlaceTypes.push(value);
+    });
+
+  }
+    
+  onUserAndMapAndWindowLoaded();
+
 };
 
 //When this page is loaded, a user should be logged in, otherwise, go to login page.
@@ -38,6 +61,8 @@ auth.onAuthStateChanged(user => {
       window.location = "../sign_in_page/signin.html";
       return;
   }
+
+  onUserAndMapAndWindowLoaded();
 
   currentUser = user;
 
@@ -54,5 +79,32 @@ function sendRequest(cat, msg, user){
   
     db.child("requests").push(request);
   
+}
+
+function onUserAndMapAndWindowLoaded(){
+
+  eventsToFire --;
+  if(eventsToFire > 0){
+    return;
+  }
+
+  console.log(avaliablePlaceTypes);
+  findTypesOfNeabyPlaces(loc, 500, avaliablePlaceTypes, map, r => db.child("users").child(currentUser.uid).child("placesNearby").set(createLocationsObject(r)));
+
+}
+
+/**
+ * Turns an array of location types strings into an object than 
+ */
+function createLocationsObject(locs){
+
+  const obj = new Object();
+
+  locs.forEach(loc =>{
+    obj[loc] = true;
+  });
+
+  return obj;
+
 }
 
