@@ -36,7 +36,7 @@ function getPossibleHelpers(request, usersObj){
 
     users = Object.keys(usersObj);
 
-    return users.filter(user => user.localeCompare(request.senderId) !== 0);
+    return users.filter(user => filterUser(request, user, usersObj[user]));
 
 }
 
@@ -47,3 +47,30 @@ exports.enterNewUserInDatabase = functions.auth.user().onCreate(user => {
     return admin.database().ref("/users").child(user.uid).child("assignedRequests").set("empty");
 
 });
+
+/**
+ * Returns wheter a given user may be able to help with a given request.
+ * @param {The request being sent} request 
+ * @param {The user being evaluated} user 
+ */
+function filterUser(request, userId, userObj){
+
+    //Don't assign requests to users that 
+    if(userObj.placesNearby === undefined || userId.localeCompare(request.senderId) === 0){
+        return false;
+    }
+
+    const relevantPlaces = request.category.split(" ");
+    const placesNearUser = Object.keys(userObj.placesNearby);
+
+    console.log(placesNearUser);
+
+    for(var i = 0; i < relevantPlaces.length; i++){
+        if(placesNearUser.includes(relevantPlaces[i])){
+            return true;
+        }
+    }
+
+    return false;
+
+}
