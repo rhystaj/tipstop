@@ -49,6 +49,31 @@ exports.enterNewUserInDatabase = functions.auth.user().onCreate(user => {
 });
 
 /**
+ * When a request is deleted from a database, all references to it are deleted.
+ */
+exports.removeAllRequestReferences = functions.database.ref('requests/{id}').onDelete((requestSnap, cont) =>{
+
+    const dbRoot = requestSnap.ref.parent.parent;
+
+    return dbRoot.child('users').once('value', usersSnap => {
+
+        const users = Object.keys(usersSnap.val());
+        
+        console.log(users);
+        
+        users.forEach(user => {
+
+            usersSnap.ref.child(user).child("assignedRequests").child(requestSnap.key).remove();
+            usersSnap.ref.child(user).child("sentRequests").child(requestSnap.key).remove();
+            usersSnap.ref.child(user).child("responses").child(requestSnap.key).remove();
+
+        });
+
+    });
+
+});
+
+/**
  * Returns wheter a given user may be able to help with a given request.
  * @param {The request being sent} request 
  * @param {The user being evaluated} user 
