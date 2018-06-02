@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link href="css/fontface.css" rel="stylesheet">
+<style type="text/css">
+  body{
+    margin: 0;
+    background-image: url(img/overview.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+.nav-respond {
+  margin-top: 0;
+    list-style-type: none;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.nav-respond-content {
+    float: left;
+    margin: 0;
+
+}
+
+.nav-respond-content a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: Simplica;
+    font-size: 25px;
+    padding: 20px;
+}
+
+.nav-respond-content a:hover {
+    background-color: #111;
+}
+.user-request{
+  display: block;
+  margin-top: 30px;
+  margin-left:10%;
+  margin-right:10%;
+  width: 90%;
+}
+.content-h{
+  font-family: PrimeRegular;
+  font-size: 50px;
+  color: white;
+}
+.logo-nav{
+  width: 120px;
+  float: right;
+  margin-right: 40px;
+  margin-top: 10px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.myBtn{
+    background-color: rgb(140, 140, 140,0.7);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    width: 90%;
+    cursor: pointer;
+
+}
+.myBtn:hover {
+    background-color: #34e89e;
+    color: white;
+}
+.button-h{
+  font-size: 20px;
+  font-family: PrimeRegular;
+}
+.button-p{
+  font-size: 25px;
+  font-family: Simplica;
+}
+.modal-h{
+  font-size: 20px;
+  font-family: PrimeRegular;
+}
+.dis{
+    display: flex;
+    flex-direction: row;
+}
+.modal-p{
+  font-size: 25px;
+  font-family: Simplica;
+
+}
+.date{
+    flex: 1;
+    text-align: right;
+    margin-top: -5px;
+}
+.text-entry{
+  width: 100%;
+  height: 100px;
+}
+.button-main{
+    font-family: PrimeRegular;
+    background-color: #34e89e;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+</style>
+
+<!--css end-->
+
+</head>
+
+
+<body>
+
+  <ul class = "nav-respond">
+    <li class="nav-respond-content"><a href="map.html">Back to request/profile</a></li>
+    <img class="logo-nav" src="img/logo.png">
+  </ul>
+  <div class="user-request">
+    <div>
+      <h1 class="content-h">User Request</h1>
+      <button id="myBtn" class="myBtn">
+          <div class="dis">
+              <div class="modal-h">usernameshere@gmail.com</div>
+              <div class="modal-p date" >2/06/2018</div>
+          </div>
+              <h2>Request Type</h2>
+              <p class="button-p">Request short description</p>
+
+      </button>
+      <br>
+      <button id="myBtn" class="myBtn">
+          <div class="dis">
+              <div class="modal-h">usernameshere@gmail.com</div>
+              <div class="modal-p date" >2/06/2018</div>
+          </div>
+          <h2>Request Type</h2>
+          <p class="button-p">Request for:</p>
+      </button>
+      <br>
+      <button id="myBtn" class="myBtn">
+          <div class="dis">
+              <div class="modal-h">usernameshere@gmail.com</div>
+              <div class="modal-p date" >2/06/2018</div>
+          </div>
+          <h2>Request Type</h2>
+          <p class="button-p">Request for:</p>
+      </button>
+      <br>
+      <button id="myBtn" class="myBtn">
+          <div class="dis">
+              <div class="modal-h">usernameshere@gmail.com</div>
+              <div class="modal-p date" >2/06/2018</div>
+          </div>
+          <h2>Request Type</h2>
+          <p class="button-p">Request for:</p>
+      </button>
+      <br>
+      <button id="myBtn" class="myBtn">
+          <div class="dis">
+              <div class="modal-h">usernameshere@gmail.com</div>
+              <div class="modal-p date" >2/06/2018</div>
+          </div>
+          <h2>Request Type</h2>
+          <p class="button-p">Request short description</p>
+      </button>
+    </div>
+    <div>
+      
+    </div>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+  <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+        <h4 class="modal-title modal-h">Can you help this person?</h4>
+        <div class="modal-body">
+          <div class="dis">
+              <div class="modal-h">usernameshere@gmail.com</div>
+              <div class="modal-p date" >2/06/2018</div>
+          </div>
+          <p class="modal-p">a short discription here /details....</p>
+          <input type="text" name="request" class="text-entry">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button-main">Submit</button>
+        </div>
+    </div>
+
+  </div>
+</body>
+
+<!--JavaScript for popup menu-->
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+
+</html>
