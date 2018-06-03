@@ -99,7 +99,7 @@ function onUserAndMapAndWindowLoaded(){
     return;
   }
 
-  console.log('ready');
+  document.getElementById("dr-title").innerText = currentUser.email;
 
   db.child('users').child(currentUser.uid).child('newUnseenRequests').on('value', snap => {
 
