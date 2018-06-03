@@ -84,6 +84,15 @@ exports.removeAllRequestReferences = functions.database.ref('requests/{id}').onD
 });
 
 /**
+ * Ensure that assigned requests in never actually deleted.
+ */
+exports.maintainAssignedRequestsReference = functions.database.ref('users/{id}/assignedRequests').onDelete((snap, cont) => {
+
+    snap.ref.parent.child('assignedRequests').set("Empty");
+
+});
+
+/**
  * Returns wheter a given user may be able to help with a given request.
  * @param {The request being sent} request 
  * @param {The user being evaluated} user 
