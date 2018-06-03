@@ -177,10 +177,19 @@ function generateRequestButton(username, time, type, msg, id, senderId){
 
 function sendResponse(recipient, requestId, msg, user){
 
+    const d = new Date();
+
+    var mins = d.getMinutes();
+    if(mins < 10){
+      mins = "0" + mins;
+    }
+
     response = {
       message: msg,
       responderName: user.email,
-      responderId: user.uid
+      responderId: user.uid,
+      dateSent: `${d.getHours()}:${mins} ${d.getDate()}/${d.getMonth()}`,
+      rawTimeSent: d.getTime()
     };
   
     db.child("users").child(recipient).child("responses").child(requestId).push(response);
