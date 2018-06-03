@@ -99,6 +99,26 @@ function onUserAndMapAndWindowLoaded(){
     return;
   }
 
+  console.log('ready');
+
+  db.child('users').child(currentUser.uid).child('newUnseenRequests').on('value', snap => {
+
+    const menuNotification = document.getElementById('menu_notification');
+    const requestsNotification = document.getElementById('requests_notification');
+
+    console.log(snap.val());
+
+    if(snap.val()){
+      menuNotification.style.display = "block";
+      requestsNotification.style.display = "block";
+    }
+    else{
+      menuNotification.style.display = "none";
+      requestsNotification.style.display = "none";
+    }
+
+  })
+
   console.log(avaliablePlaceTypes);
   findTypesOfNeabyPlaces(loc, 500, avaliablePlaceTypes, map, r => db.child("users").child(currentUser.uid).child("placesNearby").set(createLocationsObject(r)));
 

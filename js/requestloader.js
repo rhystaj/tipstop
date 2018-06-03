@@ -106,6 +106,8 @@ function showRequests(assignedRequestsSnap, cont){
         return;
     } 
 
+
+
     console.log(assignedRequestsSnap.val());
 
     requestsDiv.innerHTML = "";
@@ -131,6 +133,8 @@ function showRequests(assignedRequestsSnap, cont){
         });
 
     });
+
+    db.child('users').child(currentUser.uid).child('newUnseenRequests').set(false);
 
 }
 

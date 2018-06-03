@@ -28,6 +28,15 @@ var usersSnap;
 
  });
 
+ /**
+  * Is fired whenever a new request is assigned to a user - changing the user's status to having unseen requests.
+  */
+ exports.requestAssigned = functions.database.ref('/users/{id}/assignedRequests/{pushId}').onCreate((snap, cont) => {
+
+    snap.ref.parent.parent.child("newUnseenRequests").set(true);
+
+ });
+
 /**
  * Get a collections of users that could help with the given request.
  * @param {The request to search for help for.} request 
@@ -44,6 +53,7 @@ function getPossibleHelpers(request, usersObj){
 exports.enterNewUserInDatabase = functions.auth.user().onCreate(user => {
 
     admin.database().ref("/users").child(user.uid).child("email").set(user.email);
+    admin.database().ref("/users").child(user.uid).child("newUnseenRequests").set(false);
     return admin.database().ref("/users").child(user.uid).child("assignedRequests").set("empty");
 
 });
