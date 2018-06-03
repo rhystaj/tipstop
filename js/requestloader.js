@@ -12,7 +12,7 @@ const auth = firebase.auth();
 const db = firebase.database().ref();
 
 
-var constCurrentUser = null;
+var currentUser = null;
 var requestsDiv = null;
 
 var eventsToFire = 2;
@@ -22,6 +22,15 @@ window.onload = () =>{
 
     //Get the div where the requests will be added as they are read in.
     requestsDiv = document.getElementById("requests_div");
+
+    const responseMessage = document.getElementById("response_message");
+    
+    document.getElementById("submit_button").addEventListener('click', e => {
+        sendResponse(userBeingRespondedTo, requestBeingRespondedTo, responseMessage.value, currentUser);
+        responseMessage.value = "";
+        document.getElementById("myModal").style.display = "none";
+        db.child('users').child(currentUser.uid).child('assignedRequests').child(requestBeingRespondedTo).remove();
+    });
 
 
     onWindowAndUserLoaded();
@@ -114,7 +123,7 @@ function showRequests(assignedRequestsSnap, cont){
 
         requests.forEach(req => {
 
-            const button = generateRequestButton(req.senderName, req.dateSent, req.requestType, req.message, req.id);
+            const button = generateRequestButton(req.senderName, req.dateSent, req.requestType, req.message, req.id, req.senderId);
 
             requestsDiv.appendChild(button);
             requestsDiv.appendChild(document.createElement('br'));
@@ -127,8 +136,9 @@ function showRequests(assignedRequestsSnap, cont){
 
 
 var requestBeingRespondedTo = null;
+var userBeingRespondedTo = null;
 
-function generateRequestButton(username, time, type, msg, id){
+function generateRequestButton(username, time, type, msg, id, senderId){
 
     //Create new element wrapper.
     const newButton = document.createElement('button');
@@ -148,8 +158,8 @@ function generateRequestButton(username, time, type, msg, id){
 
     newButton.addEventListener('click', e => {
 
+        userBeingRespondedTo = senderId;
 
-        userBeingResponededTo = username;
         requestBeingRespondedTo = e.target.id;
         
         document.getElementById("response_user").innerText = username;
@@ -160,3 +170,15 @@ function generateRequestButton(username, time, type, msg, id){
     return newButton;
 
 }
+
+function sendResponse(recipient, requestId, msg, user){
+
+    response = {
+      message: msg,
+      responderName: user.email,
+      responderId: user.uid
+    };
+  
+    db.child("users").child(recipient).child("responses").child(requestId).push(response);
+  
+  }
