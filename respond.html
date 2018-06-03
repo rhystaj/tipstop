@@ -2,6 +2,9 @@
 <html>
 <head>
 
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script src="js/requestloader.js"></script>
+
 <link href="css/fontface.css" rel="stylesheet">
 <style type="text/css">
   body{
@@ -174,15 +177,7 @@
   <div class="user-request">
     <div id="requests_div">
       <h1 class="content-h">User Request</h1>
-      <button id="myBtn" class="myBtn">
-          <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
-          </div>
-              <h2>Request Type</h2>
-              <p class="button-p">Request short description</p>
-
-        </button>
+      
     </div>
   </div>
 
@@ -194,8 +189,7 @@
         <h4 class="modal-title modal-h">Can you help this person?</h4>
         <div class="modal-body">
           <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
+              <div class="modal-h" id="response_user">usernameshere@gmail.com</div>
           </div>
           <p class="modal-p">a short discription here /details....</p>
           <input type="text" name="request" class="text-entry">
@@ -219,10 +213,12 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+/*
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
     modal.style.display = "block";
 }
+*/
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
