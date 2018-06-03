@@ -33,7 +33,7 @@ window.onload = () => {
   
   const requestButton = document.getElementById("request_button");
   requestButton.addEventListener('click', e =>{
-    sendRequest(keyWordSelection.value, requestDetailsField.value, currentUser);
+    sendRequest(keyWordSelection.options[keyWordSelection.selectedIndex].text, keyWordSelection.value, requestDetailsField.value, currentUser);
   });
 
   const logoutButton = document.getElementById("logout_button");
@@ -68,13 +68,24 @@ auth.onAuthStateChanged(user => {
 
 });
 
-function sendRequest(cat, msg, user){
+function sendRequest(typ, cat, msg, user){
+
+    //Determine the time the request is being sent.
+    const d = new Date();
+
+    var mins = d.getMinutes();
+    if(mins < 10){
+      mins = "0" + mins;
+    }
 
     request = {
+      requestType: typ,
       category: cat,
       message: msg,
       senderId: user.uid,
-      senderName: user.email
+      senderName: user.email,
+      dateSent: `${d.getHours()}:${mins} ${d.getDate()}/${d.getMonth()}`,
+      rawTimeSent: d.getTime()
     }
   
     db.child("requests").push(request);
