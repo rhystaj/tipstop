@@ -55,6 +55,7 @@ exports.enterNewUserInDatabase = functions.auth.user().onCreate(user => {
     admin.database().ref("/users").child(user.uid).child("newUnseenRequests").set(false);
     admin.database().ref("/users").child(user.uid).child("newUnseenResponses").set(false);
     admin.database().ref("/users").child(user.uid).child("responses").set("empty");
+    admin.database().ref("/users").child(user.uid).child("likes").set("empty");
     return admin.database().ref("/users").child(user.uid).child("assignedRequests").set("empty");
 
 });
@@ -92,6 +93,9 @@ exports.maintainAssignedRequestsReference = functions.database.ref('users/{id}/a
 });
 exports.maintainResponsesReference = functions.database.ref('users/{id}/responses').onDelete((snap, cont) => {
     snap.ref.parent.child('responses').set("Empty");
+});
+exports.maintainLikesReference = functions.database.ref('users/{id}/likes').onDelete((snap, cont) => {
+    snap.ref.parent.child('likes').set("Empty");
 });
 
 

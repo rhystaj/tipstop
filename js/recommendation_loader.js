@@ -19,6 +19,7 @@ var eventsToFire = 2;
 
 let selectedResponseId = null;
 let responseRequestId = null;
+let userBeingRespondedTo = null;
 
 
 window.onload = () =>{
@@ -30,10 +31,13 @@ window.onload = () =>{
     const ignoreButton = document.getElementById("ignore_button");
 
     approveButton.addEventListener('click', e =>{
-        console.log("Click!");
+        
         db.child('users').child(currentUser.uid).child('responses').child(responseRequestId).child(selectedResponseId).remove();
+        db.child('users').child(userBeingRespondedTo).child('likes').child(currentUser.uid).set(currentUser.email);
+        
         document.getElementById("myModal").style.display = "none";
     });
+    
     ignoreButton.addEventListener('click', e =>{
         db.child('users').child(currentUser.uid).child('responses').child(responseRequestId).child(selectedResponseId).remove();
         document.getElementById("myModal").style.display = "none";
@@ -109,7 +113,7 @@ function showRecommendations(recommendationsSnap){
             recommendationIds.forEach(recId => {
 
                 const currectRec = recommendationsObj[id][recId];
-                requestResponseDiv.appendChild(generateRequestResponse(currectRec.responderName, currectRec.dateSent, currectRec.message, id, recId));
+                requestResponseDiv.appendChild(generateRequestResponse(currectRec.responderName, currectRec.dateSent, currectRec.message, id, recId, recommendationsObj[id][recId].responderId));
                 requestResponseDiv.appendChild(document.createElement('br'));
 
             });
@@ -197,7 +201,7 @@ function generateRequestResponsesDiv(category, message, requestId){
 }
 
 
-function generateRequestResponse(username, date, message, requestId, responseId){
+function generateRequestResponse(username, date, message, requestId, responseId, senderId){
 
     const button = document.createElement('button');
     button.className += "myBtn";
@@ -217,6 +221,7 @@ function generateRequestResponse(username, date, message, requestId, responseId)
 
         selectedResponseId = responseId;
         responseRequestId = requestId;
+        userBeingRespondedTo = senderId;
 
         document.getElementById("description_text").innerText = message;
         document.getElementById("myModal").style.display = "block";

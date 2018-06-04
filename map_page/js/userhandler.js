@@ -124,6 +124,7 @@ function onUserAndMapAndWindowLoaded(){
 
   document.getElementById("dr-title").innerText = currentUser.email;
 
+  //Register listens for changes in the unseen requests or responses status and update notifications accordingly.
   db.child('users').child(currentUser.uid).child('newUnseenRequests').on('value', snap => {
     unseenRequests = snap.val();
     updateNotifcations();
@@ -132,6 +133,47 @@ function onUserAndMapAndWindowLoaded(){
     unseenResponses = snap.val();
     updateNotifcations();
   })
+
+  db.child('users').child(currentUser.uid).child('likes').on('value', likesSnap =>{
+
+    if(likesSnap.val() === null || likesSnap.val() === undefined){
+      return;
+    }
+
+    if((typeof likesSnap.val()).localeCompare('string') == 0){
+    return;
+    }
+
+    const likesObj = likesSnap.val();
+    const likeKeys = Object.keys(likesObj);
+   
+    animateLikesPopup(likeKeys, likesObj, 0);
+
+  });
+
+}
+
+function animateLikesPopup(keys, likesObj, i){
+
+  const liker = likesObj[keys[i]];
+
+  jq('#ss').html(`
+                <div style="height: 100%;display: flex;align-items: center;padding-left: 30px;box-sizing: border-box">
+                  ${liker} <br>
+                  liked your recommendation!
+                </div>
+                 `)
+           .show()
+           .delay(3000)
+           .fadeOut('slow', () => {
+
+              db.child('users').child(currentUser.uid).child('likes').child(keys[i]).remove();
+
+              if(i < keys.length - 1){
+                animateLikesPopup(keys, likesObj, i+1);
+              }
+
+           });
 
 }
 
