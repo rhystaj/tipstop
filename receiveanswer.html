@@ -236,77 +236,12 @@
 <body>
 
   <ul class = "nav-respond">
-    <li class="nav-respond-content"><a href="map.html">Back to request/profile</a></li>
+    <li class="nav-respond-content"><a href="map_page/map.html">Back to request/profile</a></li>
     <img class="logo-nav" src="img/logo.png">
   </ul>
 
   <div id="recommendations_div">
 
-    <div class="user-request">
-      <h1 class="content-h">User Respond</h1>
-    </div>
-
-    <div class="user-request">
-      <button type="button" class="button-close">Close whole request</button>
-      <h2 class="content-h2">Your request for:...</h2>
-      <p class="user-request-detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        
-      <button id="myBtn" class="myBtn">
-          <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
-          </div>
-              <h2 class="content-h2">User Respond</h2>
-              <p class="button-p">User details respond</p>
-
-      </button>
-      <br>
-      <button id="myBtn" class="myBtn">
-          <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
-          </div>
-              <h2 class="content-h2">User Respond</h2>
-              <p class="button-p">User details respond</p>
-
-      </button>
-      <br>
-      <button id="myBtn" class="myBtn">
-          <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
-          </div>
-              <h2 class="content-h2">User Respond</h2>
-              <p class="button-p">User details respond</p>
-
-      </button>
-      <br>
-  </div>
-
-  <div class="user-request">
-      <button type="button" class="button-close">Close whole request</button>
-      <h2 class="content-h2">Your request for:...</h2>
-      <p class="user-request-detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <br>
-      <button id="myBtn" class="myBtn">
-          <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
-          </div>
-              <h2 class="content-h2">User Respond</h2>
-              <p class="button-p">User details respond</p>
-
-      </button>
-      <br>
-      <button id="myBtn" class="myBtn">
-          <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
-          </div>
-              <h2 class="content-h2">User Respond</h2>
-              <p class="button-p">User details respond</p>
-      </button>
-    </div>    
   </div>
 
   <!-- The Modal -->
@@ -316,14 +251,10 @@
       <span class="close">&times;</span>
         <h4 class="modal-title modal-h">Do you find this helpful?</h4>
         <div class="modal-body">
-          <div class="dis">
-              <div class="modal-h">usernameshere@gmail.com</div>
-              <div class="modal-p date" >2/06/2018</div>
-          </div>
+            <div class="modal-p" id="description_text">2/06/2018</div>
           <p class="modal-p"></p>
-          <p class="modal-p">User details respond here</p>
-          <button type="button" class="button-main">Yes!</button>
-          <button type="button" class="button-sub">Ignore</button>
+          <button type="button" class="button-main" id="approve_button">Yes!</button>
+          <button type="button" class="button-sub" id="ignore_button">Ignore</button>
         </div>
         <div class="modal-footer">
           
@@ -338,16 +269,8 @@
 // Get the modal
 var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
