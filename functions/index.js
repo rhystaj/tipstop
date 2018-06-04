@@ -32,10 +32,9 @@ var usersSnap;
   * Is fired whenever a new request is assigned to a user - changing the user's status to having unseen requests.
   */
  exports.requestAssigned = functions.database.ref('/users/{id}/assignedRequests/{pushId}').onCreate((snap, cont) => {
-
     snap.ref.parent.parent.child("newUnseenRequests").set(true);
-
  });
+
 
 /**
  * Get a collections of users that could help with the given request.
@@ -54,6 +53,8 @@ exports.enterNewUserInDatabase = functions.auth.user().onCreate(user => {
 
     admin.database().ref("/users").child(user.uid).child("email").set(user.email);
     admin.database().ref("/users").child(user.uid).child("newUnseenRequests").set(false);
+    admin.database().ref("/users").child(user.uid).child("newUnseenResponses").set(false);
+    admin.database().ref("/users").child(user.uid).child("responses").set("empty");
     return admin.database().ref("/users").child(user.uid).child("assignedRequests").set("empty");
 
 });
@@ -84,13 +85,15 @@ exports.removeAllRequestReferences = functions.database.ref('requests/{id}').onD
 });
 
 /**
- * Ensure that assigned requests in never actually deleted.
+ * Ensure that assignedRequests and responses is never actually deleted.
  */
 exports.maintainAssignedRequestsReference = functions.database.ref('users/{id}/assignedRequests').onDelete((snap, cont) => {
-
     snap.ref.parent.child('assignedRequests').set("Empty");
-
 });
+exports.maintainResponsesReference = functions.database.ref('users/{id}/responses').onDelete((snap, cont) => {
+    snap.ref.parent.child('responses').set("Empty");
+});
+
 
 /**
  * Returns wheter a given user may be able to help with a given request.
