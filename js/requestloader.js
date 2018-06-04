@@ -102,14 +102,13 @@ const requestHTML =
 
 function showRequests(assignedRequestsSnap, cont){
 
-    if(assignedRequestsSnap === null){
+    
+
+    if((typeof assignedRequestsSnap.val()).localeCompare('string') === 0){
+        requestsDiv.innerHTML = `<p class="button-p">No Requests Assigned</p>`;
         return;
     } 
-
-
-
-    console.log(assignedRequestsSnap.val());
-
+    
     requestsDiv.innerHTML = "";
     loadRequestsFromDatabase(Object.keys(assignedRequestsSnap.val()), requests =>{
 
@@ -184,6 +183,8 @@ function sendResponse(recipient, requestId, msg, user){
       mins = "0" + mins;
     }
 
+    console.log(recipient + " " + requestId);
+
     response = {
       message: msg,
       responderName: user.email,
@@ -192,6 +193,7 @@ function sendResponse(recipient, requestId, msg, user){
       rawTimeSent: d.getTime()
     };
   
+    db.child("users").child(userBeingRespondedTo).child('newUnseenResponses').set(true);
     db.child("users").child(recipient).child("responses").child(requestId).push(response);
   
   }

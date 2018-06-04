@@ -10,6 +10,8 @@ function initMap() {
           var infoWindow = new google.maps.InfoWindow({
             map: map
           });
+
+          setMap(map);
           
           if (navigator.geolocation) {
 
@@ -24,7 +26,7 @@ function initMap() {
                 infoWindow.setContent('My location');
                 map.setCenter(pos);
 
-                setUserLocationDetails(map, pos);
+                setLocation(pos);
 
                 var circle = new google.maps.Circle({
                   strokeColor: '#12a45a',

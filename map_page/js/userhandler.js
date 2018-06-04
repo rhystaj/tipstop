@@ -19,11 +19,15 @@ let eventsToFire = 3;
 
 var avaliablePlaceTypes = new Array();
 
-function setUserLocationDetails(m, l){
+function setMap(m, l){
   map = m;
-  loc = l;
 
   onUserAndMapAndWindowLoaded();
+}
+
+function setLocation(l){
+  loc = l;
+  findTypesOfNeabyPlaces(loc, 500, avaliablePlaceTypes, map, r => db.child("users").child(currentUser.uid).child("placesNearby").set(createLocationsObject(r)));
 }
 
 window.onload = () => {
@@ -62,9 +66,9 @@ auth.onAuthStateChanged(user => {
       return;
   }
 
-  onUserAndMapAndWindowLoaded();
-
   currentUser = user;
+
+  onUserAndMapAndWindowLoaded();
 
 });
 
@@ -92,6 +96,25 @@ function sendRequest(typ, cat, msg, user){
   
 }
 
+var unseenRequests = false;
+var unseenResponses = false;
+function updateNotifcations(){
+
+  const menuNotification = document.getElementById('menu_notification');
+  const requestsNotification = document.getElementById('requests_notification');
+  const responsesNotification = document.getElementById('responses_notification');
+
+  if(unseenRequests){requestsNotification.style.display = "block";}
+  else{requestsNotification.style.display = "none";}
+
+  if(unseenResponses){responsesNotification.style.display = "block";}
+  else{responsesNotification.style.display = "none";}
+
+  if(unseenRequests || unseenResponses){menuNotification.style.display = "block";}
+  else{menuNotification.style.display = "none";}
+
+}
+
 function onUserAndMapAndWindowLoaded(){
 
   eventsToFire --;
@@ -102,25 +125,13 @@ function onUserAndMapAndWindowLoaded(){
   document.getElementById("dr-title").innerText = currentUser.email;
 
   db.child('users').child(currentUser.uid).child('newUnseenRequests').on('value', snap => {
-
-    const menuNotification = document.getElementById('menu_notification');
-    const requestsNotification = document.getElementById('requests_notification');
-
-    console.log(snap.val());
-
-    if(snap.val()){
-      menuNotification.style.display = "block";
-      requestsNotification.style.display = "block";
-    }
-    else{
-      menuNotification.style.display = "none";
-      requestsNotification.style.display = "none";
-    }
-
+    unseenRequests = snap.val();
+    updateNotifcations();
+  });
+  db.child('users').child(currentUser.uid).child('newUnseenResponses').on('value', snap => {
+    unseenResponses = snap.val();
+    updateNotifcations();
   })
-
-  console.log(avaliablePlaceTypes);
-  findTypesOfNeabyPlaces(loc, 500, avaliablePlaceTypes, map, r => db.child("users").child(currentUser.uid).child("placesNearby").set(createLocationsObject(r)));
 
 }
 
