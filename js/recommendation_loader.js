@@ -11,11 +11,14 @@ firebase.initializeApp(config);
 const auth = firebase.auth();
 const db = firebase.database().ref();
 
-
 var currentUser = null;
 var recommendationsDiv = null;
 
 var eventsToFire = 2;
+
+
+let selectedResponseId = null;
+let responseRequestId = null;
 
 
 window.onload = () =>{
@@ -23,6 +26,18 @@ window.onload = () =>{
     //Get the div where the requests will be added as they are read in.
     recommendationsDiv = document.getElementById("recommendations_div");
 
+    const approveButton = document.getElementById("approve_button");
+    const ignoreButton = document.getElementById("ignore_button");
+
+    approveButton.addEventListener('click', e =>{
+        console.log("Click!");
+        db.child('users').child(currentUser.uid).child('responses').child(responseRequestId).child(selectedResponseId).remove();
+        document.getElementById("myModal").style.display = "none";
+    });
+    ignoreButton.addEventListener('click', e =>{
+        db.child('users').child(currentUser.uid).child('responses').child(responseRequestId).child(selectedResponseId).remove();
+        document.getElementById("myModal").style.display = "none";
+    });
 
     onWindowAndUserLoaded();
 
@@ -48,15 +63,23 @@ function onWindowAndUserLoaded(){
         return;
     }
 
-    db.child("users").child(currentUser.uid).child("assignedRequests").on('value', showRecommendations);
+    db.child("users").child(currentUser.uid).child("responses").on('value', showRecommendations);
 
 }
 
 function showRecommendations(recommendationsSnap){
 
-    recommendationsDiv.innerHTML = "";
+    
+    if((typeof recommendationsSnap.val()).localeCompare('string') === 0){
+        recommendationsDiv.innerHTML = `<p class="button-p">No Responses</p>`;
+        return;
+    }     
 
+    recommendationsDiv.innerHTML = "";
     const recommendationsObj = recommendationsSnap.val();
+
+    console.log(recommendationsObj);
+
     const recommendationRequestIds = Object.keys(recommendationsObj);
     loadRequestsWithResponses(recommendationRequestIds, requestsObj => {
 
@@ -65,30 +88,36 @@ function showRecommendations(recommendationsSnap){
 
             const aTime = getTimeOfLatestResponse(a, recommendationsObj);
             const bTime = getTimeOfLatestResponse(b, recommendationsObj);
-            return aTime - bTime;
+            return bTime - aTime;
 
         });
 
         recommendationRequestIds.forEach(id => {
 
 
-            const requestResponseDiv = generateRequestResponsesDiv(requestsObj[id].category, requestsObj[id].message);
+            const requestResponseDiv = generateRequestResponsesDiv(requestsObj[id].requestType, requestsObj[id].message, id);
+            
 
             const recommendationIds = Object.keys(recommendationsObj[id]);
             
             //Sort recommendations by latest;
             recommendationIds.sort((a, b) => {
-                return recommendationsObj[id][a].rawTimeSent - recommendationsObj[id][b].rawTimeSent;
+                return recommendationsObj[id][b].rawTimeSent - recommendationsObj[id][a].rawTimeSent;
             })
             
             recommendationIds.forEach(recId => {
 
                 const currectRec = recommendationsObj[id][recId];
-                requestResponseDiv.appendChild(generateRequestResponse(currectRec.responderName, currectRec.timeSent, currectRec.message));
+                requestResponseDiv.appendChild(generateRequestResponse(currectRec.responderName, currectRec.dateSent, currectRec.message, id, recId));
+                requestResponseDiv.appendChild(document.createElement('br'));
 
             });
 
             recommendationsDiv.appendChild(requestResponseDiv);
+            recommendationsDiv.appendChild(document.createElement('br'));
+            document.getElementById(`close-${id}`).addEventListener('click', e => {
+                db.child('requests').child(id).remove();
+            });
 
         });
 
@@ -123,16 +152,23 @@ function getTimeOfLatestResponse(requestId, recommendationsObj){
  */
 function loadRequestsWithResponses(requestIds, onload){
 
+    console.log(requestIds);
+
     let requestsLeft = requestIds.length;
     let requestsObj = new Object();
     requestIds.forEach(id => {
 
         db.child('requests').child(id).once('value', requestSnap => {
 
+            console.log(id + ": " + requestSnap.val());
+
             requestsObj[requestSnap.key] = requestSnap.val();
 
             requestsLeft--;
             if(requestsLeft <= 0){
+                
+                console.log(requestsObj);
+                
                 onload(requestsObj);
             }
 
@@ -142,26 +178,27 @@ function loadRequestsWithResponses(requestIds, onload){
 
 }
 
-function generateRequestResponsesDiv(category, message){
+function generateRequestResponsesDiv(category, message, requestId){
 
     const div = document.createElement('div');
     div.className += "user-request";
 
     div.innerHTML =
     `
-    <button type="button" class="button-close">Close whole request</button>
+    <button type="button" class="button-close" id="close-${requestId}">Close Request</button>
       <h2 class="content-h2">${category}</h2>
       <p class="user-request-detail">${message}</p>
 
-    `
+    `;
 
     return div;
 
 }
 
-function generateRequestResponse(username, date, message){
 
-    return button = document.createElement('button');
+function generateRequestResponse(username, date, message, requestId, responseId){
+
+    const button = document.createElement('button');
     button.className += "myBtn";
 
     button.innerHTML = 
@@ -172,10 +209,20 @@ function generateRequestResponse(username, date, message){
           </div>
               <p class="button-p">${message}</p>
 
-    `
+    `;
+
+    //Display the popup with the response's details when the user selects a response.
+    button.addEventListener('click', e => {
+
+        selectedResponseId = responseId;
+        responseRequestId = requestId;
+
+        document.getElementById("description_text").innerText = message;
+        document.getElementById("myModal").style.display = "block";
+
+    });
 
     return button;
-
 
 }
 
