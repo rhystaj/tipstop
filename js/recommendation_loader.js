@@ -69,7 +69,8 @@ function onWindowAndUserLoaded(){
 
 function showRecommendations(recommendationsSnap){
 
-    
+    db.child("users").child(currentUser.uid).child('newUnseenResponses').set(false);
+
     if((typeof recommendationsSnap.val()).localeCompare('string') === 0){
         recommendationsDiv.innerHTML = `<p class="button-p">No Responses</p>`;
         return;
