@@ -17,6 +17,9 @@ var requestsDiv = null;
 
 var eventsToFire = 2;
 
+var requestBeingRespondedTo = null;
+var userBeingRespondedTo = null;
+
 
 window.onload = () =>{
 
@@ -26,6 +29,7 @@ window.onload = () =>{
     const responseMessage = document.getElementById("response_message");
     
     document.getElementById("submit_button").addEventListener('click', e => {
+       
         sendResponse(userBeingRespondedTo, requestBeingRespondedTo, responseMessage.value, currentUser);
         responseMessage.value = "";
         document.getElementById("myModal").style.display = "none";
@@ -87,6 +91,8 @@ const requestHTML =
             const request = r.val();
             request["id"] = r.key;
 
+            console.log("request.id: " + request.id);
+
             requests.push(request);
 
             requestsLeft--;
@@ -124,6 +130,8 @@ function showRequests(assignedRequestsSnap, cont){
 
         requests.forEach(req => {
 
+            console.log("req.id" + req.id);
+
             const button = generateRequestButton(req.senderName, req.dateSent, req.requestType, req.message, req.id, req.senderId);
 
             requestsDiv.appendChild(button);
@@ -137,11 +145,9 @@ function showRequests(assignedRequestsSnap, cont){
 
 }
 
-
-var requestBeingRespondedTo = null;
-var userBeingRespondedTo = null;
-
 function generateRequestButton(username, time, type, msg, id, senderId){
+
+    console.log("id: " + id);
 
     //Create new element wrapper.
     const newButton = document.createElement('button');
@@ -163,7 +169,7 @@ function generateRequestButton(username, time, type, msg, id, senderId){
 
         userBeingRespondedTo = senderId;
 
-        requestBeingRespondedTo = e.target.id;
+        requestBeingRespondedTo = id;
         
         document.getElementById("response_user").innerText = username;
         document.getElementById("myModal").style.display = "block";
@@ -183,7 +189,7 @@ function sendResponse(recipient, requestId, msg, user){
       mins = "0" + mins;
     }
 
-    console.log(recipient + " " + requestId);
+    console.log(recipient + " _ " + requestId);
 
     response = {
       message: msg,
