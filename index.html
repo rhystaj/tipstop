@@ -1,73 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/slidein.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/fontface.css">
-    <!--Please don't delete the stylesheet below. it is the nav background img-->
-    <style type="text/css"> .hero-image {background-image: url("img/overview.png");}</style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBlqyGWkLQfnzLV3q4qw6YNwLI526WQ5uA",
+      authDomain: "tipstop-7153f.firebaseapp.com",
+      databaseURL: "https://tipstop-7153f.firebaseio.com",
+      projectId: "tipstop-7153f",
+      storageBucket: "tipstop-7153f.appspot.com",
+      messagingSenderId: "400002968757"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="js/signin_redirect.js"></script>
 </head>
-<body>
-
-  <!--img part start-->
-  <div class="hero-image">
-
-    <!--logo and navbar-->
-    <img class="logo" src="img/logo.png">
-    <nav class="mainnav">
-      <a class="navelement" href="sign_in_page/signin.html">Sign In</a>
-      <a class="navelement"  href="sign_up_page/signup.html">Sign Up</a>
-      <a class="navelement"  href="#">Contact</a>
-    </nav>
-    <!-- second nav bar when scroll down-->
-    <nav class="secondnav" id="secondnav">
-      <a class="navelement" href="pages/sign_in_page/signin.html">Sign In</a>
-      <a class="navelement"  href="pages/sign_up_page/signup.html">Sign Up</a>
-      <a class="navelement"  href="#">Contact</a>
-    </nav>
-<!--note: 2 of the navbars are individual so they need to have similar link in order to have same page transition-->
-
-    <!--whiteline on top-->
-    <div class="navigationsep">
-    </div>
-
-    <div class="hero-text">
-      <p class="herocontent-p" style="font-size:20px;">Please maybe try to write something here</p>
-      <h1 class="herocontent-h" style="font-size:70px">Welcome to Tipstop</h1>
-      <button class="colorbutton">Click Me</button>
-      <button class="transbutton">Click Me</button>
-    </div>
-  </div>
-  <!--img part end-->
-
-  <!--content-->
-    <div class="upper-content-1">
-      <div class="upper-content-1-1">
-        <h1 class="herocontent-p" style="font-size: 50px;">About this app</h1>
-        <p class="herocontent-p" style="font-size: 20px;">Lorem ipsum dolor sit amet, lobortis eleifend gloriatur vis ea, id viris placerat ius. At sea inani definitiones, porro quaeque fuisset vis no. Exerci ullamcorper ea vel. Consul officiis vix eu, falli omittam propriae an vis. An mel putant cetero hendrerit, et enim vero nostrud vel, nec etiam eripuit dissentiunt ei. Sale copiosae ne ius, velit bonorum ex vix. Nisl electram ad quo.
-        </p>
-        <p class="herocontent-p" style="font-size: 20px;">Lorem ipsum dolor sit amet, lobortis eleifend gloriatur vis ea, id viris placerat ius. At sea inani definitiones, porro quaeque fuisset vis no. Exerci ullamcorper ea vel. Consul officiis vix eu, falli omittam propriae an vis. An mel putant cetero hendrerit, et enim vero nostrud vel, nec etiam eripuit dissentiunt ei. Sale copiosae ne ius, velit bonorum ex vix. Nisl electram ad quo.
-        </p>
-      </div>
-    </div>
-          <img src="img/phone-1.png" class="upper-content-1-2 row slideanim">
-    <br>
-    <div class="upper-content-2">
-      <div class="upper-content-2-1">
-        <h1 class="herocontent-p" style="font-size: 50px;">App features</h1>
-        <p class="herocontent-p" style="font-size: 20px;">Lorem ipsum dolor sit amet, lobortis eleifend gloriatur vis ea, id viris placerat ius. At sea inani definitiones, porro quaeque fuisset vis no. Exerci ullamcorper ea vel. Consul officiis vix eu, falli omittam propriae an vis. An mel putant cetero hendrerit, et enim vero nostrud vel, nec etiam eripuit dissentiunt ei. Sale copiosae ne ius, velit bonorum ex vix. Nisl electram ad quo.
-        </p>
-        <p class="herocontent-p" style="font-size: 20px;">Lorem ipsum dolor sit amet, lobortis eleifend gloriatur vis ea, id viris placerat ius. At sea inani definitiones, porro quaeque fuisset vis no. Exerci ullamcorper ea vel. Consul officiis vix eu, falli omittam propriae an vis. An mel putant cetero hendrerit, et enim vero nostrud vel, nec etiam eripuit dissentiunt ei. Sale copiosae ne ius, velit bonorum ex vix. Nisl electram ad quo.
-        </p>
-      </div>
-    </div>
-          <img src="img/phone-1.png" class="upper-content-2-2 row slideanim">
-
-
-  <script src="js/main.js"></script>
-  <script src="js/float-panel.js"></script>
-</body>
 </html>

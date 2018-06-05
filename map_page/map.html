@@ -23,6 +23,14 @@
 <link href="css/fontface.css" rel="stylesheet">
 </head>
 
+<style>
+
+	.noti{
+		display: none;
+	}
+
+</style>
+
 <body>
 
 <!--User Profile Drawer Overlay Start-->
@@ -32,7 +40,7 @@
 
             <button class="navbar-open" type="button" data-toggle="drawer" data-target="#dw-s2">
                 <!--<span class="sr-only">Toggle drawer</span>-->
-                <i class="material-icons">menu<img src="img/notification.png" class="nav-noti" id="menu_notification"></i>
+                <i class="material-icons">menu<img src="img/notification.png" class="nav-noti noti" id="menu_notification"></i>
             </button>
             <div class="logonav"><img src="img/logo.png"></div><!--centered logo icon-->
             <a href="#">
@@ -56,10 +64,10 @@
         	  a{cursor: pointer; }
             </style>
 			<li>
-				<a class="list-group-item" href="../respond.html">My Requests <img src="img/notification.png" id="requests_notification"> </a> 
+				<a class="list-group-item" href="../respond.html">My Requests <img src="img/notification.png" id="requests_notification" class="noti"> </a> 
 			</li>
 			<li>
-				<a class="list-group-item" href="../receiveanswer.html">My Responds <img src="img/notification.png" id="responses_notification"></a> 
+				<a class="list-group-item" href="../receiveanswer.html">My Responds <img src="img/notification.png" id="responses_notification" class="noti"></a> 
 			</li>
 			<!--<li>
 				<a class="list-group-item">Contact Us</a>
@@ -100,23 +108,9 @@
                     <option value="shopping_mall jewelry_store furniture_store clothing_store pet_store">Shopping</option>
 				</select>
 				</div> 
-				<p>Location Radius</p>
-				<select class="custom-select custom-select-lg">
-					<option value="1">1 km</option>
-					<option value="2">2 km</option>
-					<option value="3">3 km</option>
-					<option value="4">4 km</option>
-                    <option value="5">5 km</option>
-                    <option value="6">6 km</option>
-                    <option value="7">7 km</option>
-                    <option value="8">8 km</option>
-                    <option value="9">9 km</option>
-                    <option value="10">10 km</option>
-
-				</select>
 				<br><br>
 				<p>Your specific request</p> 
-				<input type="text" name="request" class="text-entry" id="request_details">
+				<textarea rows="4" cols="50" type="text" class="text-entry" id="request_details"></textarea>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="button-request" data-dismiss="modal" id="request_button">Request</button>

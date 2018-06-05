@@ -19,6 +19,7 @@ var eventsToFire = 2;
 
 var requestBeingRespondedTo = null;
 var userBeingRespondedTo = null;
+var messageBeingRespondedTo = null;
 
 
 window.onload = () =>{
@@ -171,6 +172,7 @@ function generateRequestButton(username, time, type, msg, id, senderId){
 
         requestBeingRespondedTo = id;
         
+        document.getElementById("selected_description").innerText = msg;
         document.getElementById("response_user").innerText = username;
         document.getElementById("myModal").style.display = "block";
 
