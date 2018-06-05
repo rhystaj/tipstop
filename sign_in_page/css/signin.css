@@ -123,8 +123,8 @@ input[type="submit"]:active {
   margin-top: 10px;
 }
 .signuptext:hover { color: #3b3b3b }
-.user-text{
-  font-size: 30px;
+.user-signin{
+  font-size: 20px;
 }
 @media (max-width: 568px) {
 .login {
@@ -251,7 +251,7 @@ input[type="submit"]:active {
   margin-top: 10px;
 }
 .signuptext:hover { color: #3b3b3b }
-.user-text{
+.user-signin{
   font-size: 30px;
 }
 }
@@ -415,7 +415,7 @@ input[type="submit"]:active {
   margin-top: 10px;
 }
 .signuptext:hover { color: #3b3b3b }
-.user-text{
+.user-signin{
   font-size: 20px;
 }
 }
@@ -549,7 +549,7 @@ input[type="submit"]:active {
   margin-top: 10px;
 }
 .signuptext:hover { color: #3b3b3b }
-.user-text{
+.user-signin{
   font-size: 20px;
 }
 }
@@ -683,7 +683,7 @@ input[type="submit"]:active {
   margin-top: 10px;
 }
 .signuptext:hover { color: #3b3b3b }
-.user-text{
+.user-signin{
   font-size: 20px;
 }
 }
